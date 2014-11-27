@@ -39,12 +39,12 @@ namespace AdopteUneDev.DAL
         {
             string query = @"select * from Categories c 
                              inner join LangCateg l 
-                             on l.idCateg = c.idCateg 
+                             on l.idCategory = c.idCategory 
                              where l.idIT =" + this.IdIT;
 
             List<Categories> retour = new List<Categories>();
-            List<Dictionary<string, object>> MesLang = GestionConnexion.Instance.getData(query);
-            foreach (Dictionary<string, object> item in MesLang)
+            List<Dictionary<string, object>> MesCat = GestionConnexion.Instance.getData(query);
+            foreach (Dictionary<string, object> item in MesCat)
             {
                 Categories cat = new Categories();
                 cat.IdCategory = (int)item["idCategory"];
