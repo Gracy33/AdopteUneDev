@@ -19,7 +19,7 @@ namespace BoutikOnline.Areas.Membre.Controllers
 
         public ActionResult Fiche(int id)
         {
-            Client c = Client.getInfo(1);
+            Client c = Client.getInfo(id);
             return View(c);
         }
 

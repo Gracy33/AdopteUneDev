@@ -10,16 +10,16 @@ namespace AdopteUneDev.DAL
     public class Categories
     {
         #region Fields
-        private int _idCateg;
+        private int _idCategory;
         private string _categLabel;
-
+        private List<ITLang> _itLangs;
         #endregion
 
         #region Properties
-        public int IdCateg
+        public int IdCategory
         {
-            get { return _idCateg; }
-            set { _idCateg = value; }
+            get { return _idCategory; }
+            set { _idCategory = value; }
         }
 
         public string CategLabel
@@ -27,17 +27,49 @@ namespace AdopteUneDev.DAL
             get { return _categLabel; }
             set { _categLabel = value;}
         }
+
+        public List<ITLang> ItLangs
+        {
+            get 
+            {
+                if (_itLangs == null) _itLangs = ChargerLesITLangs();
+
+                return _itLangs; 
+                // return _itLangs = _itLangs?? ChargerLesITLangs();
+            }
+        }
         #endregion
 
         #region Method Static
-        public static Categories getCateg(int idCateg)
+
+        private List<ITLang> ChargerLesITLangs()
         {
-            List<Dictionary<string, object>> uneCateg = GestionConnexion.Instance.getData("select * from Client where idClient=" + idCateg);
+            string query = @"select * from ITLang i 
+                             inner join LangCateg c 
+                             on c.idIT = i.idIT 
+                             where c.idCategory =" + this.IdCategory;
+
+            List<ITLang> retour = new List<ITLang>();
+            List<Dictionary<string, object>> MesLang = GestionConnexion.Instance.getData(query);         
+            foreach (Dictionary<string, object> item in MesLang)
+            {
+                ITLang l = new ITLang();
+                l.IdIT = (int)item["idIT"];
+                l.ITLabel = item["ITLabel"].ToString();
+                retour.Add(l);
+            }
+
+            return retour;
+        }
+
+        public static Categories ChargerUneCategorie(int idCateg)
+        {
+            List<Dictionary<string, object>> uneCateg = GestionConnexion.Instance.getData("select * from Categories where idCategory=" + idCateg);
             Categories categ = Associe(uneCateg[0]);
             return categ;    
         }
 
-        public static List<Categories> getAllCateg()
+        public static List<Categories> ChargerToutesLesCategories()
         {
             List<Dictionary<string, object>> lstCateg = GestionConnexion.Instance.getData("select * from Categories");
             List<Categories> listCateg = new List<Categories>();
@@ -53,8 +85,8 @@ namespace AdopteUneDev.DAL
         {
             Categories categ = new Categories()
             {
-                IdCateg = int.Parse(item["idCateg"].ToString()),
-                CategLabel = item["categLabel"].ToString()
+                IdCategory = int.Parse(item["idCategory"].ToString()),
+                CategLabel = item["categLabel"].ToString() 
             };
             return categ;
         }
