@@ -86,7 +86,7 @@ namespace AdopteUneDev.DAL
             Categories categ = new Categories()
             {
                 IdCategory = int.Parse(item["idCategory"].ToString()),
-                CategLabel = item["categLabel"].ToString() 
+                CategLabel = item["CategLabel"].ToString() 
             };
             return categ;
         }

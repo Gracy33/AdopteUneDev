@@ -29,7 +29,7 @@ namespace AdopteUneDev.DAL
 
         public List<Categories> Categories
         {
-            get { return _categories; }
+            get { return _categories = _categories ?? ChargerLesCategories(); }
         }
         #endregion
 
@@ -48,7 +48,7 @@ namespace AdopteUneDev.DAL
             {
                 Categories cat = new Categories();
                 cat.IdCategory = (int)item["idCategory"];
-                cat.CategLabel = item["categLabel"].ToString();
+                cat.CategLabel = item["CategLabel"].ToString();
                 retour.Add(cat);
             }
 
