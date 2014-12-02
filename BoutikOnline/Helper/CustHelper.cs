@@ -119,7 +119,7 @@ namespace BoutikOnline.Helper
 
                 foreach (Developer item in lang.Developers)
                 {
-                    span.InnerHtml = "(" + lang.Developers.Count() + ")";
+                    span.InnerHtml = "(" + lang.Developers.Count().ToString() + ")";
                 }
 
                 tagA.InnerHtml = span.ToString();
@@ -131,5 +131,87 @@ namespace BoutikOnline.Helper
 
             return new MvcHtmlString(first.ToString());
         }
+
+        public static MvcHtmlString Devs(this HtmlHelper origin, IEnumerable<Developer> devs)
+        {
+            //<div class="col-sm-4">
+            //            <div class="product-image-wrapper">
+            //                <div class="single-products">
+            //                    <div class="productinfo text-center">
+            //                        <img src="~/Content/images/home/product1.jpg" alt="" />
+            //                        <h2>€56/Hours</h2>
+            //                        <p>Polyvalent Web Developer</p>
+            //                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+            //                    </div>
+            //                    <div class="product-overlay">
+            //                        <div class="overlay-content">
+            //                            <h2>€56/Hours</h2>
+            //                            <p>Polyvalent Web Developer</p>
+            //                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+            //                        </div>
+            //                    </div>
+            //                </div>
+            //                <div class="choose">
+            //                    <ul class="nav nav-pills nav-justified">
+            //                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+            //                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+            //                    </ul>
+            //                </div>
+            //            </div>
+            //        </div>
+
+            TagBuilder firstDiv = new TagBuilder("div");
+            firstDiv.AddCssClass("col-sm-4");
+
+            TagBuilder secondDiv = new TagBuilder("div");
+            secondDiv.AddCssClass("product-image-wrapper");
+
+            TagBuilder thirdDiv = new TagBuilder("div");
+            thirdDiv.AddCssClass("single-products");
+
+            TagBuilder fourthDiv = new TagBuilder("div");
+            fourthDiv.AddCssClass("text-center");
+            fourthDiv.AddCssClass("productinfo");
+            foreach (Developer dev in devs)
+            {
+                TagBuilder tagImg = new TagBuilder("img");
+                tagImg.Attributes.Add("src", "~/Content/images/home/" + dev.DevPicture);
+
+                TagBuilder tagH = new TagBuilder("h2");
+                tagH.InnerHtml = dev.DevHourCost + "€/hour";
+
+                foreach (ITLang lang in dev.ItLangs)
+                {
+                    foreach (Categories CurrentCateg in lang.Categories)
+                    {
+                        TagBuilder tagP = new TagBuilder("p");
+                        tagP.InnerHtml = CurrentCateg.CategLabel;
+                    
+
+                    TagBuilder tagA = new TagBuilder("a");
+                    tagA.AddCssClass("add-to-cart");
+                    tagA.AddCssClass("btn-default");
+                    tagA.AddCssClass("btn");
+                    tagA.Attributes.Add("href", "#");
+
+                    TagBuilder tagI = new TagBuilder("i");
+                    tagI.AddCssClass("fa-shopping-cart");
+                    tagI.AddCssClass("fa");
+                    tagI.InnerHtml = "Add to cart";
+
+                    tagA.InnerHtml = tagI.ToString();
+                    fourthDiv.InnerHtml = tagA.ToString();
+                    fourthDiv.InnerHtml += tagP.ToString();
+                    }
+                }
+                fourthDiv.InnerHtml += tagH.ToString();
+                thirdDiv.InnerHtml = fourthDiv.ToString();
+                secondDiv.InnerHtml = thirdDiv.ToString();
+                firstDiv.InnerHtml = secondDiv.ToString();
+            }
+
+            return new MvcHtmlString(firstDiv.ToString());
+        }
+
     }
 }

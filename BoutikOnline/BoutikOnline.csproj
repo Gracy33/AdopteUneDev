@@ -217,6 +217,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\CustHelper.cs" />
+    <Compile Include="Models\BoiteLangCateg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -243,7 +244,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Boutik\Models\" />
     <Folder Include="Areas\Membre\Models\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\Social\" />
   </ItemGroup>

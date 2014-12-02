@@ -43,7 +43,7 @@ namespace AdopteUneDev.DAL
 
         private List<Categories> ChargerLesCategories()
         {
-            string query = @"select * from Categories c 
+            string query = @"select c.* from Categories c 
                              inner join LangCateg l 
                              on l.idCategory = c.idCategory 
                              where l.idIT =" + this.IdIT;

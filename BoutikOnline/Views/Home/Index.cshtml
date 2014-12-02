@@ -1,6 +1,5 @@
 ﻿﻿@using BoutikOnline.Helper
-@*@model IEnumerable<AdopteUneDev.DAL.Categories>*@
-@model IEnumerable<AdopteUneDev.DAL.ITLang>
+@model BoutikOnline.Models.BoiteLangCateg
 @{
     ViewBag.Title = "Index";
 }
@@ -19,74 +18,74 @@
                 <div class="left-sidebar">
                     <h2>Category</h2>
                     <!--html helper categ-->
-                    @*@Html.MenuCategAndLang(Model)*@
+                    @Html.MenuCategAndLang(Model.LstCateg)
                     @*<div class="panel-group category-products" id="accordian">
-                        <!--category-productsr-->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                        Junior Developer
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="sportswear" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <ul>
-                                        <li><a href="#">.NET </a></li>
-                                        <li><a href="#">PHP </a></li>
-                                        <li><a href="#">HTML5 & CSS3 </a></li>
-                                        <li><a href="#">ASP.NET</a></li>
-                                        <li><a href="#">JQuery </a></li>
-                                    </ul>
+                            <!--category-productsr-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
+                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                            Junior Developer
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="sportswear" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul>
+                                            <li><a href="#">.NET </a></li>
+                                            <li><a href="#">PHP </a></li>
+                                            <li><a href="#">HTML5 & CSS3 </a></li>
+                                            <li><a href="#">ASP.NET</a></li>
+                                            <li><a href="#">JQuery </a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordian" href="#mens">
-                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                        Project Manager
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="mens" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <ul>
-                                        <li><a href="#">UML Specialist</a></li>
-                                        <li><a href="#">Scrum Master</a></li>
-                                    </ul>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordian" href="#mens">
+                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                            Project Manager
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="mens" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul>
+                                            <li><a href="#">UML Specialist</a></li>
+                                            <li><a href="#">Scrum Master</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title"><a href="#">Available Now</a></h4>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><a href="#">Available Now</a></h4>
+                                </div>
                             </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title"><a href="#">Trainees</a></h4>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><a href="#">Trainees</a></h4>
+                                </div>
                             </div>
-                        </div>
 
-                    </div><!--/category-products-->*@
+                        </div><!--/category-products-->*@
                     <div class="brands_products">
                         <!--brands_products-->
                         <h2>Programming language</h2>
-                    @Html.Langs(Model)
-                        <div class="brands-name">
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#"> <span class="pull-right">(50)</span>.NET</a></li>
-                                <li><a href="#"> <span class="pull-right">(56)</span>PHP</a></li>
-                                <li><a href="#"> <span class="pull-right">(27)</span>JAVA</a></li>
-                                <li><a href="#"> <span class="pull-right">(32)</span>ANDROID</a></li>
-                                <li><a href="#"> <span class="pull-right">(5)</span>JQuery</a></li>
-                            </ul>
-                        </div>
+                        @Html.Langs(Model.LstLang)
+                        @*<div class="brands-name">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="#"> <span class="pull-right">(50)</span>.NET</a></li>
+                                    <li><a href="#"> <span class="pull-right">(56)</span>PHP</a></li>
+                                    <li><a href="#"> <span class="pull-right">(27)</span>JAVA</a></li>
+                                    <li><a href="#"> <span class="pull-right">(32)</span>ANDROID</a></li>
+                                    <li><a href="#"> <span class="pull-right">(5)</span>JQuery</a></li>
+                                </ul>
+                            </div>*@
                     </div><!--/brands_products-->
                     <div class="price-range">
                         <!--price-range-->
@@ -106,6 +105,7 @@
                 <div class="features_items">
                     <!--features_items-->
                     <h2 class="title text-center">Developer of the Month</h2>
+                    @Html.Devs(Model.LstDev)
                     <div class="col-sm-4">
                         <div class="product-image-wrapper">
                             <div class="single-products">
