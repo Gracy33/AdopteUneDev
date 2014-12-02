@@ -11,7 +11,8 @@ namespace AdopteUneDev.DAL
         #region Fields
         private int _idIT;
         private string _itLabel;
-        private List<Categories> _categories; 
+        private List<Categories> _categories;
+        private List<Developer> _developers;
         #endregion
 
         #region Properties
@@ -30,6 +31,11 @@ namespace AdopteUneDev.DAL
         public List<Categories> Categories
         {
             get { return _categories = _categories ?? ChargerLesCategories(); }
+        }
+
+        public List<Developer> Developers
+        {
+            get { return _developers = _developers ?? ChargerLesDev(); }
         }
         #endregion
 
@@ -54,6 +60,35 @@ namespace AdopteUneDev.DAL
 
             return retour;
         }
+
+        private List<Developer> ChargerLesDev()
+        {
+            string query = @"select dev.idDev, dev.DevName, dev.DevFirstName, dev.DevBirthDate, dev.DevPicture, dev.DevHourCost, dev.DevDayCost, dev.DevMonthCost, dev.DevMail from Developer dev 
+                             inner join DevLang d 
+                             on d.idDev = dev.idDev 
+                             where d.idIT =" + this.IdIT;
+
+            List<Developer> retour = new List<Developer>();
+            List<Dictionary<string, object>> MesDev = GestionConnexion.Instance.getData(query);
+            foreach (Dictionary<string, object> item in MesDev)
+            {
+                Developer dev = new Developer();
+                dev.IdDev = (int)item["idDev"];
+                dev.DevName = item["DevName"].ToString();
+                dev.DevFirstName = item["DevFirstName"].ToString();
+                dev.DevBirthDate = DateTime.Parse(item["DevBirthDate"].ToString());
+                dev.DevPicture = item["DevPicture"] == null ? "" : item["DevPicture"].ToString();
+                dev.DevHourCost = float.Parse(item["DevHourCost"].ToString());
+                dev.DevDayCost = float.Parse(item["DevDayCost"].ToString());
+                dev.DevMonthCost = float.Parse(item["DevMonthCost"].ToString());
+                dev.DevMail = item["DevMail"].ToString();
+
+                retour.Add(dev);
+            }
+
+            return retour;
+        }
+
 
         public static ITLang ChargerUneLangue(int idLang)
         {

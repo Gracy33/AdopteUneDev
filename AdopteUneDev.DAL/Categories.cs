@@ -44,7 +44,7 @@ namespace AdopteUneDev.DAL
 
         private List<ITLang> ChargerLesITLangs()
         {
-            string query = @"select * from ITLang i 
+            string query = @"select i.idIT, i.ITLabel from ITLang i 
                              inner join LangCateg c 
                              on c.idIT = i.idIT 
                              where c.idCategory =" + this.IdCategory;

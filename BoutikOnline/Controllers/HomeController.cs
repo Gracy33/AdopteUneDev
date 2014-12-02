@@ -13,7 +13,9 @@ namespace BoutikOnline.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            return View();
+            //List<Categories> lesCategories = Categories.ChargerToutesLesCategories();
+            List<ITLang> leslangs = ITLang.ChargerLangues();
+            return View(leslangs);
         }
 	}
 }

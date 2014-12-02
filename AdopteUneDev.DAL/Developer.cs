@@ -18,7 +18,8 @@ namespace AdopteUneDev.DAL
         private double _devHourCost;
         private double _devDayCost;
         private double _devMonthCost;
-        private string _devMail; 
+        private string _devMail;
+        public List<ITLang> _itLangs;
         #endregion
 
         #region Properties
@@ -74,7 +75,18 @@ namespace AdopteUneDev.DAL
         {
             get { return _devMail; }
             set { _devMail = value; }
-        } 
+        }
+
+        public List<ITLang> ItLangs
+        {
+            get
+            {
+                if (_itLangs == null) _itLangs = ChargerLesITLangs();
+
+                return _itLangs;
+                // return _itLangs = _itLangs?? ChargerLesITLangs();
+            }
+        }
         #endregion
 
         #region Constructor
@@ -96,6 +108,26 @@ namespace AdopteUneDev.DAL
             this.DevMail = devMail;
         } 
         #endregion
+
+        private List<ITLang> ChargerLesITLangs()
+        {
+            string query = @"select i.idIT, i.ITLabel from ITLang i 
+                             inner join DevLang d 
+                             on d.idIT = i.idIT 
+                             where d.idDev =" + this.IdDev;
+
+            List<ITLang> retour = new List<ITLang>();
+            List<Dictionary<string, object>> MesLang = GestionConnexion.Instance.getData(query);
+            foreach (Dictionary<string, object> item in MesLang)
+            {
+                ITLang l = new ITLang();
+                l.IdIT = (int)item["idIT"];
+                l.ITLabel = item["ITLabel"].ToString();
+                retour.Add(l);
+            }
+
+            return retour;
+        }
 
         #region Method Static
         public static Developer getInfo(int id)
@@ -183,5 +215,7 @@ namespace AdopteUneDev.DAL
                 return false;
             }
         }
+
+
     }
 }
