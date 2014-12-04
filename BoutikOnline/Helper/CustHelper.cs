@@ -1,6 +1,7 @@
 ﻿using AdopteUneDev.DAL;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -132,85 +133,47 @@ namespace BoutikOnline.Helper
             return new MvcHtmlString(first.ToString());
         }
 
-        public static MvcHtmlString Devs(this HtmlHelper origin, IEnumerable<Developer> devs)
+        public static MvcHtmlString DeveloperOfTheMonth(this HtmlHelper origin, IEnumerable<Developer> devs)
         {
-            //<div class="col-sm-4">
-            //            <div class="product-image-wrapper">
-            //                <div class="single-products">
-            //                    <div class="productinfo text-center">
-            //                        <img src="~/Content/images/home/product1.jpg" alt="" />
-            //                        <h2>€56/Hours</h2>
-            //                        <p>Polyvalent Web Developer</p>
-            //                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-            //                    </div>
-            //                    <div class="product-overlay">
-            //                        <div class="overlay-content">
-            //                            <h2>€56/Hours</h2>
-            //                            <p>Polyvalent Web Developer</p>
-            //                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-            //                        </div>
-            //                    </div>
-            //                </div>
-            //                <div class="choose">
-            //                    <ul class="nav nav-pills nav-justified">
-            //                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-            //                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-            //                    </ul>
-            //                </div>
-            //            </div>
-            //        </div>
-
-            TagBuilder firstDiv = new TagBuilder("div");
-            firstDiv.AddCssClass("col-sm-4");
-
-            TagBuilder secondDiv = new TagBuilder("div");
-            secondDiv.AddCssClass("product-image-wrapper");
-
-            TagBuilder thirdDiv = new TagBuilder("div");
-            thirdDiv.AddCssClass("single-products");
-
-            TagBuilder fourthDiv = new TagBuilder("div");
-            fourthDiv.AddCssClass("text-center");
-            fourthDiv.AddCssClass("productinfo");
-            foreach (Developer dev in devs)
+            string returnStr = "";
+            foreach (Developer CurrentDev in devs)
             {
-                TagBuilder tagImg = new TagBuilder("img");
-                tagImg.Attributes.Add("src", "~/Content/images/home/" + dev.DevPicture);
-
-                TagBuilder tagH = new TagBuilder("h2");
-                tagH.InnerHtml = dev.DevHourCost + "€/hour";
-
-                foreach (ITLang lang in dev.ItLangs)
-                {
-                    foreach (Categories CurrentCateg in lang.Categories)
-                    {
-                        TagBuilder tagP = new TagBuilder("p");
-                        tagP.InnerHtml = CurrentCateg.CategLabel;
-                    
-
-                    TagBuilder tagA = new TagBuilder("a");
-                    tagA.AddCssClass("add-to-cart");
-                    tagA.AddCssClass("btn-default");
-                    tagA.AddCssClass("btn");
-                    tagA.Attributes.Add("href", "#");
-
-                    TagBuilder tagI = new TagBuilder("i");
-                    tagI.AddCssClass("fa-shopping-cart");
-                    tagI.AddCssClass("fa");
-                    tagI.InnerHtml = "Add to cart";
-
-                    tagA.InnerHtml = tagI.ToString();
-                    fourthDiv.InnerHtml = tagA.ToString();
-                    fourthDiv.InnerHtml += tagP.ToString();
-                    }
-                }
-                fourthDiv.InnerHtml += tagH.ToString();
-                thirdDiv.InnerHtml = fourthDiv.ToString();
-                secondDiv.InnerHtml = thirdDiv.ToString();
-                firstDiv.InnerHtml = secondDiv.ToString();
+                returnStr += RenderPartialViewToString((Controller)HttpContext.Current.Session["CurrentController"], "_DevDisplay", CurrentDev);
             }
 
-            return new MvcHtmlString(firstDiv.ToString());
+            return new MvcHtmlString(returnStr);
+        }
+
+        /// <summary>
+        /// Renders the specified partial view to a string.
+        /// </summary>
+        /// <param name="controller">The current controller instance.</param>
+        /// <param name="viewName">The name of the partial view.</param>
+        /// <param name="model">The model.</param>
+        /// <returns>The partial view as a string.</returns>
+        public static string RenderPartialViewToString(Controller controller, string viewName, object model)
+        {
+            //Sert à afficher la photo, le nom de la categ,.... dans la vue
+            if (string.IsNullOrEmpty(viewName))
+            {
+                viewName = controller.ControllerContext.RouteData.GetRequiredString("action");
+            }
+
+            controller.ViewData.Model = model;
+
+            using (var sw = new StringWriter())
+            {
+                // Find the partial view by its name and the current controller context.
+                ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(controller.ControllerContext, viewName);
+
+                // Create a view context.
+                var viewContext = new ViewContext(controller.ControllerContext, viewResult.View, controller.ViewData, controller.TempData, sw);
+
+                // Render the view using the StringWriter object.
+                viewResult.View.Render(viewContext, sw);
+
+                return sw.GetStringBuilder().ToString();
+            }
         }
 
     }

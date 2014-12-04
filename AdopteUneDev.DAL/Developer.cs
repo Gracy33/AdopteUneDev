@@ -19,6 +19,8 @@ namespace AdopteUneDev.DAL
         private double _devDayCost;
         private double _devMonthCost;
         private string _devMail;
+        private string _nomCategPrincipale;
+        private int _devCategPrincipale;
         public List<ITLang> _itLangs;
         #endregion
 
@@ -77,6 +79,18 @@ namespace AdopteUneDev.DAL
             set { _devMail = value; }
         }
 
+        public int DevCategPrincipale
+        {
+            get { return _devCategPrincipale; }
+            set { _devCategPrincipale = value; }
+        }
+
+        public string NomCategPrincipale
+        {
+            get { return _nomCategPrincipale = _nomCategPrincipale ?? chargerNomCateg(); }
+        }
+
+
         public List<ITLang> ItLangs
         {
             get
@@ -106,8 +120,16 @@ namespace AdopteUneDev.DAL
             this.DevDayCost = devDayCost;
             this.DevMonthCost = devMonthCost;
             this.DevMail = devMail;
-        } 
+        }
         #endregion
+
+        private string chargerNomCateg()
+        {
+            List<Dictionary<string, object>> maCateg = GestionConnexion.Instance.getData("select CategLabel from Categories where idCategory=" + this.DevCategPrincipale);
+            string categName = "";
+            if (maCateg[0]["CategLabel"] != null) categName = maCateg[0]["CategLabel"].ToString();
+            return categName;
+        }
 
         private List<ITLang> ChargerLesITLangs()
         {
@@ -143,8 +165,8 @@ namespace AdopteUneDev.DAL
             dev.DevDayCost = float.Parse(unDev[0]["DevDayCost"].ToString());
             dev.DevMonthCost = float.Parse(unDev[0]["DevMonthCost"].ToString());
             dev.DevMail = unDev[0]["DevMail"].ToString();
-
-            return dev;   
+            dev.DevCategPrincipale = int.Parse(unDev[0]["DevCategPrincipale"].ToString());
+            return dev;
         }
 
         public static List<Developer> ChargerTous()
@@ -163,11 +185,11 @@ namespace AdopteUneDev.DAL
                 dev.DevDayCost = float.Parse(item["DevDayCost"].ToString());
                 dev.DevMonthCost = float.Parse(item["DevMonthCost"].ToString());
                 dev.DevMail = item["DevMail"].ToString();
-
+                dev.DevCategPrincipale = int.Parse(item["DevCategPrincipale"].ToString());
                 listDev.Add(dev);
             }
             return listDev;
-        }  
+        }
         #endregion
 
         public virtual bool saveMe()

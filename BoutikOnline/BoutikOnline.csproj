@@ -103,6 +103,13 @@
     <Content Include="Content\css\responsive.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\images\404\404.png" />
+    <Content Include="Content\images\babyDev.jpg" />
+    <Content Include="Content\images\babyDev1.jpg" />
+    <Content Include="Content\images\babyDev2.jpg" />
+    <Content Include="Content\images\babyDev3.jpg" />
+    <Content Include="Content\images\babyDev4.jpg" />
+    <Content Include="Content\images\babyDev5.jpg" />
+    <Content Include="Content\images\babyDev6.jpg" />
     <Content Include="Content\images\blog\blog-one.jpg" />
     <Content Include="Content\images\blog\blog-three.jpg" />
     <Content Include="Content\images\blog\blog-two.jpg" />
@@ -233,6 +240,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Areas\Boutik\Views\web.config" />
     <Content Include="Areas\Membre\Views\web.config" />
+    <Content Include="Views\Home\_DevDisplay.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

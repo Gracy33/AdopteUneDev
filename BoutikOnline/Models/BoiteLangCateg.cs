@@ -26,8 +26,8 @@ namespace BoutikOnline.Models
 
         public List<Developer> LstDev
         {
-            get { return _lstDev; }
-            set { _lstDev = value; }
+            get;
+            set;
         }
     }
 }

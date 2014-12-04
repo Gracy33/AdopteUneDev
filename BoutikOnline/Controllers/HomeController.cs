@@ -14,9 +14,7 @@ namespace BoutikOnline.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            //List<Categories> lesCategories = Categories.ChargerToutesLesCategories();
-            //List<ITLang> leslangs = ITLang.ChargerLangues();
-            //return View(leslangs);
+            Session["CurrentController"] = this;
 
             BoiteLangCateg langCateg = new BoiteLangCateg();
             langCateg.LstCateg = Categories.ChargerToutesLesCategories();

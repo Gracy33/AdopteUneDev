@@ -63,7 +63,7 @@ namespace AdopteUneDev.DAL
 
         private List<Developer> ChargerLesDev()
         {
-            string query = @"select dev.idDev, dev.DevName, dev.DevFirstName, dev.DevBirthDate, dev.DevPicture, dev.DevHourCost, dev.DevDayCost, dev.DevMonthCost, dev.DevMail from Developer dev 
+            string query = @"select dev.* from Developer dev 
                              inner join DevLang d 
                              on d.idDev = dev.idDev 
                              where d.idIT =" + this.IdIT;
