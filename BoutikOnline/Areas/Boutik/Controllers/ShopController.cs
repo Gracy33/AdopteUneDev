@@ -1,4 +1,5 @@
 ﻿using AdopteUneDev.DAL;
+using BoutikOnline.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,15 @@ namespace BoutikOnline.Areas.Boutik.Controllers
         }
 
         public ActionResult Details(int id)
-        {
-            Developer dev = Developer.getInfo(id);
-            return View(dev);
-        }
+        { 
+            Session["CurrentController"] = this;
+
+            BoiteLangCateg langCateg = new BoiteLangCateg();
+            langCateg.LstCateg = Categories.ChargerToutesLesCategories();
+            langCateg.LstLang = ITLang.ChargerLangues();
+            langCateg.LstDev = Developer.ChargerTous();
+            langCateg.SelectedDev = Developer.getInfo(id);
+            return View(langCateg);
+        }    
 	}
 }

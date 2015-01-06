@@ -11,6 +11,7 @@ namespace BoutikOnline.Models
         List<Categories> _lstCateg;
         List<ITLang> _lstLang;
         List<Developer> _lstDev;
+        Developer _selectedDev;
 
         public List<Categories> LstCateg
         {
@@ -26,8 +27,14 @@ namespace BoutikOnline.Models
 
         public List<Developer> LstDev
         {
-            get;
-            set;
+            get { return _lstDev; }
+            set { _lstDev = value; }
+        }
+
+        public Developer SelectedDev
+        {
+            get { return _selectedDev;}
+            set { _selectedDev = value;}
         }
     }
 }

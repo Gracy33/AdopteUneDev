@@ -1,69 +1,87 @@
-﻿@model AdopteUneDev.DAL.Developer
+﻿﻿@using BoutikOnline.Helper
+@model BoutikOnline.Models.BoiteLangCateg
 
 <section>
-              <div class="col-sm-9 padding-right">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>Category</h2>
+                    <!--html helper categ-->
+                    @Html.MenuCategAndLang(Model.LstCateg)
+
+                    <div class="brands_products">
+                        <!--brands_products-->
+                        <h2>Programming language</h2>
+                        @Html.Langs(Model.LstLang)
+                    </div><!--/brands_products-->
+                    <div class="price-range">
+                        <!--price-range-->
+                        <h2>Price Range</h2>
+                        <div class="well text-center">
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br />
+                            <b class="pull-left">€ 0</b> <b class="pull-right">€ 600</b>
+                        </div>
+                    </div><!--/price-range-->
+                    <div class="shipping text-center">
+                        <!--shipping-->
+                        <img src="~/Content/images/home/shipping.jpg" alt="" />
+                    </div><!--/shipping-->
+                </div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
                 <div class="product-details">
                     <!--product-details-->
                     <div class="col-sm-5">
                         <div class="view-product">
-                            <img src="~/Content/images/@Model.DevPicture" alt="" />
+                            <img src="~/Content/images/@Model.SelectedDev.DevPicture" alt="" />
                             <h3>ZOOM</h3>
                         </div>
-                        <div id="similar-product" class="carousel slide" data-ride="carousel">
-
-                            <!-- Wrapper for slides -->
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-                                    <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-                                    <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-                                </div>
-                                <div class="item">
-                                    <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-                                    <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-                                    <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-                                </div>
-                                <div class="item">
-                                    <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-                                    <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-                                    <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-                                </div>
-
-                            </div>
-
-                            <!-- Controls -->
-                            <a class="left item-control" href="#similar-product" data-slide="prev">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a class="right item-control" href="#similar-product" data-slide="next">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </div>
-
                     </div>
                     <div class="col-sm-7">
                         <div class="product-information">
                             <!--/product-information-->
-                            <img src="images/product-details/new.jpg" class="newarrival" alt="" />
-                            <h2>@Model.DevFirstName @Model.DevName</h2>
-                            <h2>@Model.DevFirstName @Model.DevName</h2>
-                            <p>Salaire Horaire  @Model.DevHourCost</p>
-                            <p>Salaire Journalier @Model.DevDayCost</p>
-                            <p>Salaire Mensuel @Model.DevMonthCost</p>
-                            <img src="images/product-details/rating.png" alt="" />
+                            <h2>@Model.SelectedDev.DevFirstName @Model.SelectedDev.DevName</h2>
+                            <img src="~/Content/images/product-details/rating.png" alt="" />
+                            <br />
+                            <p><b>Date de naissance: </b> @Model.SelectedDev.DevBirthDate</p>
+                            <p><b>Contact: </b> @Model.SelectedDev.DevMail</p>
+                            <br />
+
                             <span>
-                                <span>US $59</span>
-                                <label>Quantity:</label>
-                                <input type="text" value="3" />
+                                <span>€@Model.SelectedDev.DevHourCost</span>
+                                <label>Hours:</label>
+                                <input type="text" value="1" />
                                 <button type="button" class="btn btn-fefault cart">
                                     <i class="fa fa-shopping-cart"></i>
                                     Add to cart
                                 </button>
                             </span>
+                            <span>
+                                <span>€@Model.SelectedDev.DevDayCost</span>
+                                <label>Day:</label>
+                                <input type="text" value="1" />
+                                <button type="button" class="btn btn-fefault cart">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Add to cart
+                                </button>
+                            </span>
+                            <span>
+                                <span>€@Model.SelectedDev.DevMonthCost</span>
+                                <label>Month:</label>
+                                <input type="text" value="1" />
+                                <button type="button" class="btn btn-fefault cart">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Add to cart
+                                </button>
+                            </span>
+                            <br />
                             <p><b>Availability:</b> In Stock</p>
                             <p><b>Condition:</b> New</p>
-                            <p><b>Brand:</b> E-Shop</p>
-                            <a href=""><img src="images/product-details/share.png" class="share img-responsive" alt="" /></a>
+                            <p><b>Categorie:</b> @Model.SelectedDev.NomCategPrincipale</p>
+                            
+                            <a href=""><img src="~/Content/images/product-details/share.png" class="share img-responsive" alt="" /></a>
                         </div><!--/product-information-->
                     </div>
                 </div><!--/product-details-->
@@ -258,171 +276,99 @@
 
                     </div>
                 </div><!--/category-tab-->
+                @*<div class="recommended_items">
+                        <!--recommended_items-->
+                        <h2 class="title text-center">recommended items</h2>
 
-                <div class="recommended_items">
-                    <!--recommended_items-->
-                    <h2 class="title text-center">recommended items</h2>
-
-                    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <div class="col-sm-4">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/recommend1.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="images/home/recommend1.jpg" alt="" />
+                                                    <h2>$56</h2>
+                                                    <p>Easy Polo Black Edition</p>
+                                                    <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="images/home/recommend2.jpg" alt="" />
+                                                    <h2>$56</h2>
+                                                    <p>Easy Polo Black Edition</p>
+                                                    <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="images/home/recommend3.jpg" alt="" />
+                                                    <h2>$56</h2>
+                                                    <p>Easy Polo Black Edition</p>
+                                                    <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/recommend2.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                <div class="item">
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="images/home/recommend1.jpg" alt="" />
+                                                    <h2>$56</h2>
+                                                    <p>Easy Polo Black Edition</p>
+                                                    <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/recommend3.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="images/home/recommend2.jpg" alt="" />
+                                                    <h2>$56</h2>
+                                                    <p>Easy Polo Black Edition</p>
+                                                    <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="images/home/recommend3.jpg" alt="" />
+                                                    <h2>$56</h2>
+                                                    <p>Easy Polo Black Edition</p>
+                                                    <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="item">
-                                <div class="col-sm-4">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/recommend1.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/recommend2.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="images/home/recommend3.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         </div>
-                        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-                            <i class="fa fa-angle-left"></i>
-                        </a>
-                        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </div>
-                </div><!--/recommended_items-->
+                    </div><!--/recommended_items-->*@
 
             </div>
         </div>
     </div>
 </section>
-<div>
-    <h4>Developer</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Nom
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DevName)
-        </dd>
-
-        <dt>
-            Prénom
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DevFirstName)
-        </dd>
-
-        <dt>
-            Date de naissance
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DevBirthDate)
-        </dd>
-
-        <dt>
-            Salaire horaire
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DevHourCost)
-        </dd>
-
-        <dt>
-            Salaire journalier
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DevDayCost)
-        </dd>
-
-        <dt>
-            Salaire Mensuel
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DevMonthCost)
-        </dd>
-
-        <dt>
-            E-mail
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DevMail)
-        </dd>
-
-        <dt>
-            Categorie
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NomCategPrincipale)
-        </dd>
-    </dl>
-</div>
-<p>
-</p>
