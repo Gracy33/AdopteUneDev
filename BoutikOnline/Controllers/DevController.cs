@@ -8,11 +8,11 @@ using System.Web.Mvc;
 
 namespace BoutikOnline.Controllers
 {
-    public class HomeController : Controller
+    public class DevController : Controller
     {
         //
-        // GET: /Home/
-        public ActionResult Index()
+        // GET: /Dev/
+        public ActionResult Details(int id)
         {
             Session["CurrentController"] = this;
 
@@ -20,8 +20,15 @@ namespace BoutikOnline.Controllers
             langCateg.LstCateg = Categories.ChargerToutesLesCategories();
             langCateg.LstLang = ITLang.ChargerLangues();
             langCateg.LstDev = Developer.ChargerTous();
-            
+            langCateg.SelectedDev = Developer.getInfo(id);
             return View(langCateg);
+        }
+
+        [HttpPost]
+        public ActionResult postReview(int id, string txtName, string txtMail, string txtText)
+        {
+            Review.AddReview(id, txtName, txtMail, txtText);
+            return new RedirectResult("/Dev/Details/" + id);
         }
 	}
 }

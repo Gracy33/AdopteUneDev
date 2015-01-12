@@ -22,6 +22,7 @@ namespace AdopteUneDev.DAL
         private string _nomCategPrincipale;
         private int _devCategPrincipale;
         public List<ITLang> _itLangs;
+        public List<Review> _reviews;
         #endregion
 
         #region Properties
@@ -101,6 +102,17 @@ namespace AdopteUneDev.DAL
                 // return _itLangs = _itLangs?? ChargerLesITLangs();
             }
         }
+
+        public List<Review> Reviews
+        {
+            get
+            {
+                if (_reviews == null) _reviews = ChargerReviews();
+
+                return _reviews;
+                // return _itLangs = _itLangs?? ChargerLesITLangs();
+            }
+        }
         #endregion
 
         #region Constructor
@@ -149,6 +161,11 @@ namespace AdopteUneDev.DAL
             }
 
             return retour;
+        }
+
+        private List<Review> ChargerReviews()
+        {
+            return Review.getReviewsFromDev(this.IdDev);
         }
 
         #region Method Static

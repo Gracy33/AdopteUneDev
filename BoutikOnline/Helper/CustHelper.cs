@@ -133,6 +133,33 @@ namespace BoutikOnline.Helper
             return new MvcHtmlString(first.ToString());
         }
 
+        public static MvcHtmlString TagCloud(this HtmlHelper origin, Developer dev)
+        {
+            List<string> nuage = new List<string>();
+            //je mets tout dans une liste de string
+            //je récupère les languages de notre dev
+            List<ITLang> langs = ITLang.ChargerLangues()
+                .Where(l => l.Developers.Where(d => d.IdDev
+                    == dev.IdDev).Count() > 0).ToList();
+
+            foreach (ITLang item in langs)
+            {
+                nuage.Add(item.ITLabel);
+            }
+
+            //TODO: Add css and struct to create Tag cloud
+            TagBuilder ta = new TagBuilder("p");
+
+            foreach (string item in nuage)
+            {
+                TagBuilder tli = new TagBuilder("p");
+                tli.InnerHtml = item;
+                ta.InnerHtml += tli.ToString();
+            }
+            return new MvcHtmlString(ta.ToString());
+
+        }
+
         public static MvcHtmlString DeveloperOfTheMonth(this HtmlHelper origin, IEnumerable<Developer> devs)
         {
             string returnStr = "";

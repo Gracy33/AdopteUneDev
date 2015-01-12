@@ -180,8 +180,6 @@
     <Content Include="Areas\Membre\Views\Client\Edit.cshtml" />
     <Content Include="Areas\Boutik\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Boutik\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Boutik\Views\Shop\Index.cshtml" />
-    <Content Include="Areas\Boutik\Views\Shop\Details.cshtml" />
     <Content Include="Areas\Membre\Views\Client\Fiche.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -217,6 +215,7 @@
     <Compile Include="Areas\Boutik\Controllers\ShopController.cs" />
     <Compile Include="Areas\Membre\Controllers\ClientController.cs" />
     <Compile Include="Areas\Membre\MembreAreaRegistration.cs" />
+    <Compile Include="Controllers\DevController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SocialController.cs" />
@@ -241,6 +240,8 @@
     <Content Include="Areas\Boutik\Views\web.config" />
     <Content Include="Areas\Membre\Views\web.config" />
     <Content Include="Views\Home\_DevDisplay.cshtml" />
+    <Content Include="Views\Dev\Details.cshtml" />
+    <Content Include="Views\Shared\_Reviews.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -251,6 +252,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Boutik\Models\" />
+    <Folder Include="Areas\Boutik\Views\Shop\" />
     <Folder Include="Areas\Membre\Models\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\Social\" />
