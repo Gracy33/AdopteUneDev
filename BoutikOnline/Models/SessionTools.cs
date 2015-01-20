@@ -1,5 +1,6 @@
 ﻿using AdopteUneDev.DAL;
 using BoutikOnline.Areas.Boutik.Models;
+using BoutikOnline.Areas.Membre.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,24 @@ namespace BoutikOnline.Models
             set 
             {
                 HttpContext.Current.Session["Panier"] = value;
+            }
+        }
+
+        public static PanierUser PanierUser
+        {
+            get
+            {
+                if (HttpContext.Current.Session["PanierUser"] == null)
+                {
+                    HttpContext.Current.Session["PanierUser"] = new PanierUser();
+                }
+
+                //HttpContext = Contexte dans lequel s'execute l'application. Dialogue entre serveur et client
+                return (PanierUser)HttpContext.Current.Session["PanierUser"];
+            }
+            set
+            {
+                HttpContext.Current.Session["PanierUser"] = value;
             }
         }
 

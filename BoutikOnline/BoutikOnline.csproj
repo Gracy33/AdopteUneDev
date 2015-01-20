@@ -182,6 +182,7 @@
     <Content Include="Areas\Boutik\Views\Panier\AddToBasket.cshtml" />
     <Content Include="Areas\Membre\Views\Login\LoginForm.cshtml" />
     <Content Include="Areas\Boutik\Views\Panier\CheckOut.cshtml" />
+    <Content Include="Areas\Membre\Views\Login\Inscription.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -215,10 +216,12 @@
     <Compile Include="Areas\Boutik\BoutikAreaRegistration.cs" />
     <Compile Include="Areas\Boutik\Controllers\PanierController.cs" />
     <Compile Include="Areas\Boutik\Models\Ligne.cs" />
+    <Compile Include="Areas\Boutik\Models\Newuser.cs" />
     <Compile Include="Areas\Boutik\Models\Panier.cs" />
     <Compile Include="Areas\Membre\Controllers\ClientController.cs" />
     <Compile Include="Areas\Membre\Controllers\LoginController.cs" />
     <Compile Include="Areas\Membre\MembreAreaRegistration.cs" />
+    <Compile Include="Areas\Membre\Models\PanierUser.cs" />
     <Compile Include="Controllers\DevController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SocialController.cs" />
@@ -256,7 +259,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Boutik\Views\Shop\" />
-    <Folder Include="Areas\Membre\Models\" />
     <Folder Include="Areas\Membre\Views\Client\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\Social\" />

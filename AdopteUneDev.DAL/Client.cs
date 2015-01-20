@@ -127,23 +127,21 @@ namespace AdopteUneDev.DAL
         #endregion
 
         #region Function
-        public virtual bool saveMe()
+        public virtual bool saveMe(string name, string firstName, string mail, string company, string username, string password)
         {
-            string query = "";
-
-                query = @"INSERT INTO Client (Cliname, CliFirstName, CliMail, CliCompany, CliUsername, CliPassword)
-                                 VALUES (@name,@firstName,@mail,@company,@cliUsername,@cliPassword";
+            string query = @"INSERT INTO Client (CliName, CliFirstName, CliMail, CliCompany, CliUsername, CliPassword)
+                                 VALUES (@name,@firstName,@mail,@company,@username,@password)";
   
 
             //les données a insérer
             Dictionary<string, object> valeurs = new Dictionary<string, object>();
-            
-            valeurs.Add("name", this.Name);
-            valeurs.Add("firstName", this.FirstName);
-            valeurs.Add("mail", this.Mail);
-            valeurs.Add("company", this.Company);
-            valeurs.Add("cliUsername", this.CliUsername);
-            valeurs.Add("cliPassword", this.CliPassword);
+
+            valeurs.Add("name", name);
+            valeurs.Add("firstName", firstName);
+            valeurs.Add("mail", mail);
+            valeurs.Add("company", company);
+            valeurs.Add("username", username);
+            valeurs.Add("password", password);
 
 
             if (GestionConnexion.Instance.saveData(query, GenerateKey.APP, valeurs))

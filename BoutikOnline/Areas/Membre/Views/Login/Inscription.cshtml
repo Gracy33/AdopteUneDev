@@ -1,0 +1,24 @@
+﻿@model BoutikOnline.Areas.Boutik.Models.Newuser
+
+<section id="form">
+    <!--form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="signup-form">
+                    <h2>Inscription</h2>
+                    <form action="~/Login/InscriptionPlus" method="post">
+                        <input type="text" placeholder="Name" name="txtName" value="@Model.cliName" />
+                        <input type="text" placeholder="First Name" name="txtFirstName" value="@Model.cliFirstName" />
+                        <input type="email" placeholder="Email Address" name="txtEmail" value="@Model.cliMail" />
+                        <input type="text" placeholder="Company" name="txtCompany" />
+                        <input type="text" placeholder="Login" name="txtLogin" />
+                        <input type="password" placeholder="Password" name="txtPassword" />
+                        <button type="submit" class="btn btn-default">Signup</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
