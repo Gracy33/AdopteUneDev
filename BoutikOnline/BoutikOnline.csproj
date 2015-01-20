@@ -257,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Boutik\Views\Default1\" />
     <Folder Include="Areas\Boutik\Views\Shop\" />
     <Folder Include="Areas\Membre\Views\Client\" />
     <Folder Include="Views\Login\" />
