@@ -218,7 +218,6 @@
     <Compile Include="Areas\Boutik\Models\Ligne.cs" />
     <Compile Include="Areas\Boutik\Models\Newuser.cs" />
     <Compile Include="Areas\Boutik\Models\Panier.cs" />
-    <Compile Include="Areas\Membre\Controllers\ClientController.cs" />
     <Compile Include="Areas\Membre\Controllers\LoginController.cs" />
     <Compile Include="Areas\Membre\MembreAreaRegistration.cs" />
     <Compile Include="Areas\Membre\Models\PanierUser.cs" />
