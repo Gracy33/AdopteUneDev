@@ -174,13 +174,14 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Areas\Membre\Views\Client\Index.cshtml" />
     <Content Include="Areas\Membre\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Membre\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Membre\Views\Client\Edit.cshtml" />
     <Content Include="Areas\Boutik\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Boutik\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Membre\Views\Client\Fiche.cshtml" />
+    <Content Include="Areas\Boutik\Views\Shared\_Ligne.cshtml" />
+    <Content Include="Areas\Boutik\Views\Panier\AddToBasket.cshtml" />
+    <Content Include="Areas\Membre\Views\Login\LoginForm.cshtml" />
+    <Content Include="Areas\Boutik\Views\Panier\CheckOut.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -212,18 +213,21 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Boutik\BoutikAreaRegistration.cs" />
-    <Compile Include="Areas\Boutik\Controllers\ShopController.cs" />
+    <Compile Include="Areas\Boutik\Controllers\PanierController.cs" />
+    <Compile Include="Areas\Boutik\Models\Ligne.cs" />
+    <Compile Include="Areas\Boutik\Models\Panier.cs" />
     <Compile Include="Areas\Membre\Controllers\ClientController.cs" />
+    <Compile Include="Areas\Membre\Controllers\LoginController.cs" />
     <Compile Include="Areas\Membre\MembreAreaRegistration.cs" />
     <Compile Include="Controllers\DevController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SocialController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\CustHelper.cs" />
     <Compile Include="Models\BoiteLangCateg.cs" />
+    <Compile Include="Models\SessionTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -251,9 +255,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Boutik\Models\" />
     <Folder Include="Areas\Boutik\Views\Shop\" />
     <Folder Include="Areas\Membre\Models\" />
+    <Folder Include="Areas\Membre\Views\Client\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\Social\" />
   </ItemGroup>

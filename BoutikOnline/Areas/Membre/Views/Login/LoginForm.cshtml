@@ -1,0 +1,50 @@
+﻿@model AdopteUneDev.DAL.Client
+
+<section id="form">
+    <!--form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-1">
+                <div class="login-form">
+                    <!--login form-->
+                    @if (Session["login"] == null)
+                    {
+                        <h2>Login to your account</h2>
+                        <form action="~/Login/LoginForm" method="post">
+                            <input type="text" placeholder="Username" name="txtLogin" />
+                            <input type="password" placeholder="Password" name="txtPassword" />
+                            <span>
+                                <input type="checkbox" class="checkbox">
+                                Keep me signed in
+                            </span>
+                            <button type="submit" class="btn btn-default">Login</button>
+                            <span style="color:red">@ViewBag.ErrorLogin</span>
+                        </form>
+                    }
+                    else
+                    {
+                        <h2>You're already logged in as @Session["login"]</h2>
+                    }
+                </div><!--/login form-->
+            </div>
+            <div class="col-sm-1">
+                <h2 class="or">OR</h2>
+            </div>
+            <div class="col-sm-4">
+                <div class="signup-form">
+                    <!--sign up form-->
+                    <h2>New User Signup!</h2>
+                    <form action="~/Login/Inscription" method="post">
+                        <input type="text" placeholder="Name" name="txtName" />
+                        <input type="text" placeholder="First Name" name="txtFirstName" />
+                        <input type="email" placeholder="Email Address" name="txtEmail" />
+                        <input type="text" placeholder="Company" name="txtCompany" />
+                        <input type="text" placeholder="Login" name="txtLogin" />
+                        <input type="password" placeholder="Password" name="txtPassword" />
+                        <button type="submit" class="btn btn-default">Signup</button>
+                    </form>
+                </div><!--/sign up form-->
+            </div>
+        </div>
+    </div>
+</section>

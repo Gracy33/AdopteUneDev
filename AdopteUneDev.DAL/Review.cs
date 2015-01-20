@@ -15,7 +15,6 @@ namespace AdopteUneDev.DAL
         private int _idDev;
         private string _com;
         private DateTime _reviewDate;
-        private List<Developer> _developer;
         #endregion
 
         #region Properties
@@ -71,6 +70,26 @@ namespace AdopteUneDev.DAL
                 retour.Add(rev);
             }
             return retour;
-        }        
+        }
+
+        public static void AddReview(int id, string txtName, string txtMail, string txtText)
+        {
+            string query = @"INSERT INTO [dbo].[ReviewsTab]
+           ([Name]
+            ,[Review]
+           ,[Email]
+           ,[idDev]
+           )
+            VALUES
+           (@Name,@Review,@Email,@idDev)";
+            Dictionary<string, object> dicovalues = new Dictionary<string, object>();
+
+            dicovalues.Add("Name", txtName);
+            dicovalues.Add("Review", txtText);
+            dicovalues.Add("Email", txtMail);
+            dicovalues.Add("idDev", id);
+
+            GestionConnexion.Instance.saveData(query, GenerateKey.APP, dicovalues);
+        }
     }
 }

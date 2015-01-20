@@ -2,18 +2,24 @@
 
 namespace BoutikOnline.Areas.Boutik
 {
-    public class BoutikAreaRegistration : AreaRegistration 
+    public class BoutikAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
+            get
             {
                 return "Boutik";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
+            context.MapRoute(
+              "Boutique_panier",
+             "Boutique/{controller}/{action}/{id}/{qte}/{op}",
+              new { action = "Index", id = UrlParameter.Optional }
+          );
+
             context.MapRoute(
                 "Boutik_default",
                 "Boutik/{controller}/{action}/{id}",

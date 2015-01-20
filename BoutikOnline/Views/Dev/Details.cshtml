@@ -46,36 +46,25 @@
                             <img src="~/Content/images/product-details/rating.png" alt="" />
                             <br />
                             <p><b>Date de naissance: </b> @Model.SelectedDev.DevBirthDate</p>
-
                             <br />
 
-                            <span>
-                                <span>€@Model.SelectedDev.DevHourCost</span>
-                                <label>Hours:</label>
-                                <input type="text" value="1" />
-                                <button type="button" class="btn btn-fefault cart">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    Add to cart
-                                </button>
-                            </span>
-                            <span>
-                                <span>€@Model.SelectedDev.DevDayCost</span>
-                                <label>Day:</label>
-                                <input type="text" value="1" />
-                                <button type="button" class="btn btn-fefault cart">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    Add to cart
-                                </button>
-                            </span>
-                            <span>
-                                <span>€@Model.SelectedDev.DevMonthCost</span>
-                                <label>Month:</label>
-                                <input type="text" value="1" />
-                                <button type="button" class="btn btn-fefault cart">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    Add to cart
-                                </button>
-                            </span>
+                            <form method="post" action="~/Boutik/Panier/AddToBasket">
+                                <span>
+                                    <label>
+                                        <select name="choix">
+                                            <option value="@Model.SelectedDev.DevHourCost">€@Model.SelectedDev.DevHourCost/Hour </option>
+                                            <option value="@Model.SelectedDev.DevDayCost">€@Model.SelectedDev.DevDayCost/Day </option>
+                                            <option value="@Model.SelectedDev.DevMonthCost">€@Model.SelectedDev.DevMonthCost/Month </option>
+                                        </select>
+                                    </label>
+                                    <input type="number" name="qte" min="0" value="1" />                                    
+                                    <button type="submit" class="btn btn-fefault cart">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        Add To Cart
+                                    </button>
+                                    <input type="hidden" name="id" value="@Model.SelectedDev.IdDev" />
+                                </span>
+                            </form>
                             <br />
                             <p><b>Availability:</b> In Stock</p>
                             <p><b>Condition:</b> New</p>

@@ -1,0 +1,54 @@
+﻿@model BoutikOnline.Areas.Boutik.Models.Ligne
+<tr>
+
+    <td class="cart_product">
+        <a href=""><img src="~/Content/images/@Model.ZeDave.DevPicture" alt="" style="width:70px; height:90px;"></a>
+    </td>
+    <td class="cart_description">
+        <h4><a href="">@Model.ZeDave.DevFirstName @Model.ZeDave.DevName</a></h4>
+        <p>Web ID: @Model.ZeDave.IdDev</p>
+        <p>Category: @Model.ZeDave.NomCategPrincipale</p>
+    </td>
+    <td class="cart_price">
+        @if (Model.Choix == Model.ZeDave.DevDayCost)
+        {
+            <p>@Model.ZeDave.DevDayCost€/Jour</p>
+        }
+        else if (Model.Choix == Model.ZeDave.DevHourCost)
+        {
+            <p>@Model.ZeDave.DevHourCost€/heure</p>
+        }
+        else
+        {
+            <p>@Model.ZeDave.DevMonthCost€/Mois</p>
+        }
+    </td>
+    <td class="cart_quantity">
+        <div class="cart_quantity_button">
+            @Html.ActionLink("+", "AddToBasket", "Panier", new { area = "Boutik", id = @Model.ZeDave.IdDev, qte = 1, op = true }, null)
+            <input class="cart_quantity_input" type="text" name="quantity" value="@Model.Qte" autocomplete="off" size="2">
+            @Html.ActionLink("-", "AddToBasket", "Panier", new { area = "Boutik", id = @Model.ZeDave.IdDev, qte = 1, op = false }, null)
+        </div>
+    </td>
+    <td class="cart_total">
+        @if (Model.Choix == Model.ZeDave.DevHourCost)
+        {
+            <p class="cart_total_price">@(Model.TotalLigne)€</p>
+        }
+        else if (Model.Choix == Model.ZeDave.DevDayCost)
+        {
+            <p class="cart_total_price">@(Model.TotalLigne)€</p>
+        }
+        else
+        {
+            <p class="cart_total_price">@(Model.Qte * (int)Model.ZeDave.DevMonthCost)€</p>
+        }
+
+    </td>
+    <td class="cart_delete">
+        <form method="post" action="~/Boutik/Panier/Supprimer">
+            <input type="hidden" name="id" value="@Model.ZeDave.IdDev" />
+            <button class="cart_quantity_delete">X</button>
+        </form>
+    </td>
+</tr>

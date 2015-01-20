@@ -16,25 +16,6 @@ namespace BoutikOnline.Areas.Membre.Controllers
             List<Client> maListe = Client.ChargerTous();
             return View(maListe);
         }
-
-        public ActionResult Fiche(int id)
-        {
-            Client c = Client.getInfo(id);
-            return View(c);
-        }
-
-        [HttpGet]
-        public ActionResult Edit(int id)
-        {
-            Client c = Client.getInfo(id);
-            return View(c);
-        }
-
-        [HttpPost]
-        public ActionResult Edit(Client c)
-        {
-            c.saveMe();
-            return View(c);
-        }
+                
 	}
 }

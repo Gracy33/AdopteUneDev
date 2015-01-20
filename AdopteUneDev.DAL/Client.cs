@@ -15,6 +15,8 @@ namespace AdopteUneDev.DAL
         private string _firstName;
         private string _mail;
         private string _company;
+        private string _cliUsername;
+        private string _cliPassword;
         #endregion
 
         #region Properties
@@ -47,6 +49,17 @@ namespace AdopteUneDev.DAL
             get { return _company; }
             set { _company = value; }
         }
+
+        public string CliUsername
+        {
+            get { return _cliUsername; }
+            set { _cliUsername = value; }
+        }
+        public string CliPassword
+        {
+            get { return _cliPassword; }
+            set { _cliPassword = value; }
+        }
         #endregion
 
         #region Constructor
@@ -69,8 +82,8 @@ namespace AdopteUneDev.DAL
         public static Client getInfo(int identifiant)
         {
             List<Dictionary<string, object>> unClient = GestionConnexion.Instance.getData("select * from Client where idClient=" + identifiant);
-            Client c = Associe(unClient[0]);            
-            return c;    
+            Client c = Associe(unClient[0]);
+            return c;
         }
 
         public static List<Client> ChargerTous()
@@ -93,40 +106,45 @@ namespace AdopteUneDev.DAL
                 Name = item["CliName"].ToString(),
                 FirstName = item["CliFirstName"].ToString(),
                 Mail = item["CliMail"].ToString(),
-                Company = item["CliCompany"].ToString()
+                Company = item["CliCompany"].ToString(),
+                CliUsername = item["CliUsername"].ToString(),
+                CliPassword = item["CliPassword"].ToString()
             };
             return c;
+        }
+        
+        public static Client AuthentifieMoi(string login, string password)
+        {
+            List<Dictionary<string, object>> infoUser = GestionConnexion.Instance.getData("Select * from Client where CliUsername='" + login + "' and CliPassword='" + password + "'");
+            Client retour = null;
+            if (infoUser.Count > 0)
+            {
+                int idclient = (int)infoUser[0]["idClient"];
+                retour = Client.getInfo(idclient);
+            }
+            return retour;
         }
         #endregion
 
         #region Function
         public virtual bool saveMe()
         {
-            Client c = Client.getInfo(this.IdClient);
             string query = "";
-            if (c == null)
-            {
 
-                query = @"INSERT INTO [AdopteUneDev].[dbo].[Client]
-                                 VALUES (@idClient,@name,@firstName,@mail,@company";
-            }
-            else
-            {
-                query = @"UPDATE [dbo].[Client]
-                             SET [CliName] = @name,
-                                 [CliFirstName] = @firstName,
-                                 [CliMail] = @mail,
-                                 [CliCompany] = @company
-                           WHERE [idClient] = @idClient";
-            }
+                query = @"INSERT INTO Client (Cliname, CliFirstName, CliMail, CliCompany, CliUsername, CliPassword)
+                                 VALUES (@name,@firstName,@mail,@company,@cliUsername,@cliPassword";
+  
 
             //les données a insérer
             Dictionary<string, object> valeurs = new Dictionary<string, object>();
-            valeurs.Add("idClient", this.IdClient);
+            
             valeurs.Add("name", this.Name);
             valeurs.Add("firstName", this.FirstName);
             valeurs.Add("mail", this.Mail);
             valeurs.Add("company", this.Company);
+            valeurs.Add("cliUsername", this.CliUsername);
+            valeurs.Add("cliPassword", this.CliPassword);
+
 
             if (GestionConnexion.Instance.saveData(query, GenerateKey.APP, valeurs))
             {
