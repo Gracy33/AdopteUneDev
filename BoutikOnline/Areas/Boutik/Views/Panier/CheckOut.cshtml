@@ -53,7 +53,6 @@
                                     <option>Canada</option>
                                     <option>Dubai</option>
                                 </select>
-                                <input type="password" placeholder="Confirm password">
                                 <input type="text" placeholder="Phone *">
                                 <input type="text" placeholder="Mobile Phone">
                                 <input type="text" placeholder="Fax">
@@ -149,15 +148,13 @@
             </table>           
         </div>
         <div class="payment-options">
-            <span>
-                <label><input type="checkbox"> Direct Bank Transfer</label>
-            </span>
-            <span>
-                <label><input type="checkbox"> Check Payment</label>
-            </span>
-            <span>
-                <label><input type="checkbox"> Paypal</label>
-            </span>
+            @using (Html.BeginForm("ValidateCommand", "PayPal", new{area = "Paiement"}))
+            {
+                @{Html.RenderPartial("ValidateCommand" )}
+                <input type="hidden" name="product" value="product" readonly/>
+                <input type="hidden" name="totalPrice" value="@total" readonly/>
+                <input type="submit" name="btnConfirm" value="Paypal">
+            }
         </div>
     </div>
 </section>

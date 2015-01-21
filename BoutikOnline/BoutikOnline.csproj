@@ -183,6 +183,10 @@
     <Content Include="Areas\Membre\Views\Login\LoginForm.cshtml" />
     <Content Include="Areas\Boutik\Views\Panier\CheckOut.cshtml" />
     <Content Include="Areas\Membre\Views\Login\Inscription.cshtml" />
+    <Content Include="Areas\Paiement\Views\web.config" />
+    <Content Include="Areas\Paiement\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Paiement\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Paiement\Views\Shared\ValidateCommand.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -220,7 +224,10 @@
     <Compile Include="Areas\Boutik\Models\Panier.cs" />
     <Compile Include="Areas\Membre\Controllers\LoginController.cs" />
     <Compile Include="Areas\Membre\MembreAreaRegistration.cs" />
-    <Compile Include="Areas\Membre\Models\PanierUser.cs" />
+    <Compile Include="Models\PanierUser.cs" />
+    <Compile Include="Areas\Paiement\Controllers\PayPalController.cs" />
+    <Compile Include="Areas\Paiement\Models\PayPalModel.cs" />
+    <Compile Include="Areas\Paiement\PaiementAreaRegistration.cs" />
     <Compile Include="Controllers\DevController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SocialController.cs" />
@@ -257,9 +264,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Boutik\Views\Default1\" />
-    <Folder Include="Areas\Boutik\Views\Shop\" />
+    <Folder Include="Areas\Membre\Models\" />
     <Folder Include="Areas\Membre\Views\Client\" />
+    <Folder Include="Areas\Paiement\Views\Paypal\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\Social\" />
   </ItemGroup>

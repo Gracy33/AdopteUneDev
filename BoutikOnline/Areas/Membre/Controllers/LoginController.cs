@@ -62,7 +62,7 @@ namespace BoutikOnline.Areas.Membre.Controllers
         {
             Client c = new Client();
             c.saveMe(txtName, txtFirstName, txtEmail, txtCompany, txtLogin, txtPassword);
-            ViewBag.Message = "Vous pouvez vous connecter";
+            //ViewBag.Message = "Vous pouvez vous connecter";
             return RedirectToRoute(new {area= "Membre", controller = "Login", action = "LoginForm" });
         }
     }
